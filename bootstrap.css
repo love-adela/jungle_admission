@@ -1,0 +1,28 @@
+* {
+    font-family: 'Stylish', sans-serif;
+}
+
+.wrap {
+    width: 900px;
+    margin: 10px auto;
+}
+
+.comment {
+    color: blue;
+    font-weight: bold;
+}
+
+.posting-box {
+    width: 500px;
+    margin: 10px auto 30px auto;
+    padding: 10px;
+    border: 3px solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.form-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px 20px 10px;
+}
