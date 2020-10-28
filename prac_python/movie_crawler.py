@@ -12,11 +12,12 @@ soup = BeautifulSoup(data.text, 'html.parser')
 
 # select를 이용해서, tr들을 불러오기
 movies = soup.select('#old_content > table > tbody > tr')
+
 # movies (tr들) 의 반복문을 돌리기
-for i in range(len(movies)):
-    # movie 안에 a 가 있으면,
-    # (조건을 만족하는 첫 번째 요소, 없으면 None을 반환한다.)
-    movie_name = movies[i].select_one('td.title > div > a')
-    movie_rank = movies[i].select_one('td.point')
+for movie in movies:
+    movie_name = movie.select_one('td.title > div > a')
     if movie_name is not None:
-        print(i, movie_name.text, movie_rank.text)
+        rank = movie.select_one('td:nth-child(1) > img')['alt']
+        title = movie_name.text
+        star = movie.select_one('td.point').text
+        print(rank, title, star)
