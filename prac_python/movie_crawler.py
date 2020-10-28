@@ -1,5 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+db = client.dbjungle
+
 
 # 타겟 URL을 읽어서 HTML를 받아오고,
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -20,4 +25,9 @@ for movie in movies:
         rank = movie.select_one('td:nth-child(1) > img')['alt']
         title = movie_name.text
         star = movie.select_one('td.point').text
-        print(rank, title, star)
+        doc = {
+            'rank': rank,
+            'title': title,
+            'star': star
+        }
+        db.movie.insert_one(doc)
