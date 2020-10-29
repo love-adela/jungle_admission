@@ -5,8 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Flask 첫 문서</title>
+
+    <script>
+        function is_requested_get() {
+            $.ajax({
+                type: "GET",
+                url: "/test?given_title=봄날은간다",
+                data: {},
+                success: function(response){
+                    console.log(response)
+                }
+            })
+        }
+
+        function is_requested_post() {
+            $.ajax({
+                type:"POST",
+                url: "/test",
+                data: {given_title:'봄날은간다'},
+                success: function(response){
+                    console.log(response)
+                }
+            })
+        }
+    </script>
 </head>
 <body>
     <h1>플라스크 서버를 만들었다!</h1>
+    <img src="{{ url_for('static', filename='rome.jpg') }}" alt="rome coloseum">
 </body>
 </html>
